@@ -1,14 +1,24 @@
 import * as React from "react";
 import DOMAIN from "../Domain.tsx";
+import {useAuth} from "../../AuthContext.tsx";
+import {useNavigate} from "react-router";
 
 interface LoginRequestBody {
     email: string;
     password: string;
 }
 
+interface LoginResponseBody {
+    isSuccess: boolean;
+    email: string;
+    nickname: string;
+}
+
 export default function LoginPage() {
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
+    const {user, login, logout} = useAuth();
+    const navigate = useNavigate();
 
     async function signin() {
         const requestBody: LoginRequestBody = {
@@ -22,13 +32,14 @@ export default function LoginPage() {
             headers: { "Content-Type": "application/json" }
         });
 
-        const isSuccess: boolean = await response.json();
+        const responseBody: LoginResponseBody = await response.json();
 
-        if (!isSuccess) {
-            throw new Error("회원가입에 실패했습니다")
+        if (!responseBody.isSuccess) {
+            throw new Error("로그인에 실패했습니다")
         }
 
-        window.location.href = "/";
+        login(responseBody.nickname);
+        navigate("/");
     }
 
     return <>
