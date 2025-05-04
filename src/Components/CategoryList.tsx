@@ -28,11 +28,13 @@ export default function CategoryList() {
     return <>
         <div>
             <ul>
-                <li>{categoryList.map((category: Category) => {
+                {categoryList.map((category: Category) => {
                     return <>
-                        <li>{category.categoryName} {category.count}</li>
+                        <li>
+                            {category.categoryName} {category.count}
+                        </li>
                     </>
-                })}</li>
+                })}
             </ul>
         </div>
     </>

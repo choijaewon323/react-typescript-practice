@@ -4,6 +4,8 @@ import About from "./pages/About.tsx";
 import NewBoardPage from "./pages/NewBoardPage.tsx";
 import NewUserPage from "./pages/NewUserPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import {AuthProvider} from "../AuthContext.tsx";
+import BoardDetailPage from "./pages/BoardDetailPage.tsx";
 
 const router = createBrowserRouter(([
     {
@@ -26,8 +28,15 @@ const router = createBrowserRouter(([
         path: '/login',
         element: <LoginPage></LoginPage>
     }
+    ,
+    {
+        path: '/board/detail/:id',
+        element: <BoardDetailPage></BoardDetailPage>
+    }
 ]))
 
 export default function Router() {
-    return <RouterProvider router={router} />
+    return <AuthProvider>
+        <RouterProvider router={router} />
+    </AuthProvider>
 }

@@ -1,6 +1,7 @@
 import DOMAIN from "../routes/Domain.tsx";
 import {useEffect} from "react";
 import * as React from "react";
+import {Link} from "react-router";
 
 interface BoardListDetail {
     id: number;
@@ -39,7 +40,9 @@ export default function BoardList() {
         <div>
             <ul>
                 {boardList.map((board: BoardListDetail) => {
-                    return <li>{board.title} {board.writer} {board.likeCount} {board.createdAt}</li>
+                    return <li key={board.id}>
+                        <p><Link to={`/board/detail/${board.id}`}>{board.title}</Link> {board.writer} {board.likeCount} {board.createdAt}</p>
+                    </li>
                 })}
             </ul>
         </div>
