@@ -1,35 +1,17 @@
 import {useEffect, useState} from "react";
-import DOMAIN from "../Domain.tsx";
 import {useParams} from "react-router";
 import ReplyList from "../../Components/ReplyList.tsx";
+import {getBoardDetail} from "../../api/BoardApis.ts";
+import {BoardDetail} from "../../types/response/BoardDetail.ts";
 
-interface ResponseBody {
-    id: number;
-    title: string;
-    content: string;
-    writer: string;
-    category: string;
-    likeCount: number;
-    cnt: number;
-    createdAt: string;
-    updatedAt: string;
-}
 
 export default function BoardDetailPage() {
-    const [board, setBoard] = useState<ResponseBody>();
+    const [board, setBoard] = useState<BoardDetail>();
     const {id} = useParams<{id: string}>();
 
-    async function getBoard() {
-        const response = await fetch(`${DOMAIN}/api/v1/board/${id}`);
-
-        const responseBody: ResponseBody = await response.json();
-
-        return responseBody;
-    }
-
     useEffect(() => {
-        getBoard()
-            .then((result: ResponseBody) => {
+        getBoardDetail(id!)
+            .then((result: BoardDetail) => {
                 setBoard(result);
             })
     }, []);

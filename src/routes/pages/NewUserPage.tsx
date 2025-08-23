@@ -1,11 +1,6 @@
 import * as React from "react";
-import DOMAIN from "../Domain.tsx";
-
-interface NewUserRequestBody {
-    nickname: string;
-    email: string;
-    password: string;
-}
+import {postNewUser} from "../../api/UserApis.ts";
+import {NewUserRequest} from "../../types/request/NewUserRequest.ts";
 
 export default function NewUserPage() {
     const [email, setEmail] = React.useState<string>("");
@@ -13,33 +8,50 @@ export default function NewUserPage() {
     const [nickname, setNickname] = React.useState<string>("");
 
     async function signup() {
-        const requestBody: NewUserRequestBody = {
+        const requestBody: NewUserRequest = {
             nickname: nickname,
             email: email,
             password: password
         }
 
-        const response = await fetch(`${DOMAIN}/api/v1/user`, {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers: { "Content-Type": "application/json" }
-        });
-
-        const isSuccess: boolean = await response.json();
-
-        if (!isSuccess) {
-            throw new Error("회원가입에 실패했습니다")
-        }
+        await postNewUser(requestBody)
 
         window.location.href = "/";
     }
 
     return <>
-        <div>
-            <p><input type={"email"} placeholder={"이메일을 입력하세요"} onChange={e => setEmail(e.target.value)}/></p>
-            <p><input type={"password"} placeholder={"비밀번호를 입력하세요"} onChange={e => setPassword(e.target.value)}/></p>
-            <p><input placeholder={"닉네임을 입력하세요"} onChange={e => setNickname(e.target.value)}/></p>
-            <button onClick={signup}>회원가입</button>
+        <div className={"text-center"}>
+            <h1 className="
+                text-4xl mt-50
+            ">
+                TOY PROJECT
+            </h1>
+            <div className="border rounded-md ml-20 mr-20 mt-10">
+                <p className="
+                    border-b h-10
+                ">
+                    <input
+                        className="w-full h-full"
+                        type={"email"} placeholder={"이메일을 입력하세요"} onChange={e => setEmail(e.target.value)}/>
+                </p>
+                <p className="
+                    border-b h-10
+                ">
+                    <input
+                        className="w-full h-full"
+                        type={"password"} placeholder={"비밀번호를 입력하세요"} onChange={e => setPassword(e.target.value)}/>
+                </p>
+                <p className="h-10">
+                    <input
+                        className="w-full h-full"
+                        placeholder={"닉네임을 입력하세요"} onChange={e => setNickname(e.target.value)}/>
+                </p>
+            </div>
+            <div>
+                <button
+                    className={"bg-sky-500 hover:bg-sky-700 p-2 rounded-md text-white mt-5"}
+                    onClick={signup}>회원가입</button>
+            </div>
         </div>
     </>
 }

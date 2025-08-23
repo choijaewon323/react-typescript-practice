@@ -8,13 +8,40 @@ import LogoutButton from "../../Components/LogoutButton.tsx";
 
 export default function Home() {
     return <>
-        <h1>Blog</h1>
-        <UserSignupButton></UserSignupButton>
-        <LoginButton></LoginButton>
-        <LogoutButton></LogoutButton>
-        <NewCategory></NewCategory>
-        <CategoryList></CategoryList>
-        <NewBoard></NewBoard>
-        <BoardList></BoardList>
+        <div className={"container mx-auto"}>
+            <h1 className={"text-center text-7xl"}>
+                TOY PROJECT
+            </h1>
+            <div className="
+            flex flex-row-reverse mt-12
+        ">
+                <div className="
+                text-center mr-12
+            ">
+                    <UserSignupButton></UserSignupButton>
+                </div>
+                <div className="
+                text-center mr-12
+            ">
+                    <LoginButton></LoginButton>
+                </div>
+                <div className="
+                text-center mr-12
+            ">
+                    <LogoutButton></LogoutButton>
+                </div>
+            </div>
+
+            <div className="flex mt-12">
+                <div className="flex-2">
+                    <NewBoard></NewBoard>
+                    <BoardList></BoardList>
+                </div>
+                <div className="flex-1">
+                    <NewCategory></NewCategory>
+                    <CategoryList></CategoryList>
+                </div>
+            </div>
+        </div>
     </>
 }

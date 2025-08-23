@@ -1,37 +1,27 @@
 import {useParams} from "react-router";
-import DOMAIN from "../routes/Domain.tsx";
 import {useEffect, useState} from "react";
 import NewReply from "./NewReply.tsx";
-
-interface ResponseBody {
-    id: number;
-    writer: string;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-}
+import Reply from "../types/response/Reply.ts";
+import {getReplyList} from "../api/ReplyApis.ts";
 
 export default function ReplyList() {
     const {id} = useParams<{id: string}>();
-    const [replyList, setReplyList] = useState<ResponseBody[]>([]);
-
-    async function getReplyList() {
-        const response = await fetch(`${DOMAIN}/api/v1/reply/${id}`);
-
-        const responseBody: ResponseBody[] = await response.json();
-
-        setReplyList(responseBody);
-    }
+    const [replyList, setReplyList] = useState<Reply[]>([]);
 
     useEffect(() => {
-        getReplyList();
+        replyListReload();
     }, []);
+
+    async function replyListReload() {
+        getReplyList(id!)
+            .then(replyList => setReplyList(replyList));
+    }
 
     return <>
         <div>
             <h3>댓글 리스트</h3>
             <ul>
-                {replyList?.map((reply: ResponseBody) => {
+                {replyList?.map((reply: Reply) => {
                     return <>
                         <li key={reply.id}>
                             <p>{reply.content}</p>
@@ -42,6 +32,6 @@ export default function ReplyList() {
                 })}
             </ul>
         </div>
-        <NewReply reload={getReplyList}></NewReply>
+        <NewReply reload={replyListReload}></NewReply>
     </>
 }

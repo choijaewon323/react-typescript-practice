@@ -1,33 +1,12 @@
-import DOMAIN from "../routes/Domain.tsx";
 import {useEffect} from "react";
 import * as React from "react";
 import {Link} from "react-router";
+import BoardListDetail from "../types/BoardListDetail.ts";
+import {getBoardList} from "../api/BoardApis.ts";
 
-interface BoardListDetail {
-    id: number;
-    category: string;
-    title: string;
-    writer: string;
-    likeCount: number;
-    createdAt: string;
-    updatedAt: string;
-}
-
-interface BoardListResponse {
-    count: number;
-    boardList: BoardListDetail[];
-}
 
 export default function BoardList() {
     const [boardList,  setBoardList] = React.useState<BoardListDetail[]>([]);
-
-    async function getBoardList() {
-        const response = await fetch(`${DOMAIN}/api/v1/board`);
-
-        const responseBody: BoardListResponse = await response.json();
-
-        return responseBody.boardList;
-    }
 
     useEffect(() => {
         getBoardList()
@@ -38,13 +17,16 @@ export default function BoardList() {
 
     return <>
         <div>
-            <ul>
-                {boardList.map((board: BoardListDetail) => {
-                    return <li key={board.id}>
-                        <p><Link to={`/board/detail/${board.id}`}>{board.title}</Link> {board.writer} {board.likeCount} {board.createdAt}</p>
-                    </li>
-                })}
-            </ul>
+            {boardList.map((board: BoardListDetail) => {
+                return <div
+                    className="flex text-center  h-20"
+                    key={board.id}>
+                    <div className={"flex-10"}><Link to={`/board/detail/${board.id}`}>{board.title}</Link></div>
+                    <div className={"flex-1"}>{board.writer}</div>
+                    <div className={"flex-1"}>{board.likeCount}</div>
+                    <div className={"flex-2"}>{board.createdAt}</div>
+                </div>
+            })}
         </div>
     </>
 }

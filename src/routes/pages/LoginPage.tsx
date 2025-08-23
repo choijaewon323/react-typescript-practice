@@ -1,18 +1,10 @@
 import * as React from "react";
-import DOMAIN from "../Domain.tsx";
 import {useAuth} from "../../AuthContext.tsx";
 import {useNavigate} from "react-router";
+import {loginAndGetNickname} from "../../api/LoginApis.ts";
+import {LoginRequest} from "../../types/request/LoginRequest.ts";
 
-interface LoginRequestBody {
-    email: string;
-    password: string;
-}
 
-interface LoginResponseBody {
-    isSuccess: boolean;
-    email: string;
-    nickname: string;
-}
 
 export default function LoginPage() {
     const [email, setEmail] = React.useState<string>("");
@@ -21,24 +13,14 @@ export default function LoginPage() {
     const navigate = useNavigate();
 
     async function signin() {
-        const requestBody: LoginRequestBody = {
+        const requestBody: LoginRequest = {
             email: email,
             password: password
         }
 
-        const response = await fetch(`${DOMAIN}/api/v1/user/login`, {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers: { "Content-Type": "application/json" }
-        });
+        const nickname = await loginAndGetNickname(requestBody);
 
-        const responseBody: LoginResponseBody = await response.json();
-
-        if (!responseBody.isSuccess) {
-            throw new Error("로그인에 실패했습니다")
-        }
-
-        login(responseBody.nickname);
+        login(nickname);
         navigate("/");
     }
 
