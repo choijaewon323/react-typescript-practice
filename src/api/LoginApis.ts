@@ -3,7 +3,7 @@ import DOMAIN from "./Domain.tsx";
 import {LoginResponse} from "../types/response/LoginResponse.ts";
 
 
-async function RloginAndGetNickname(requestBody: LoginRequest) {
+async function loginAndGetNickname(requestBody: LoginRequest) {
     const response = await fetch(`${DOMAIN}/api/v1/user/login`, {
         method: "POST",
         body: JSON.stringify(requestBody),
@@ -19,8 +19,11 @@ async function RloginAndGetNickname(requestBody: LoginRequest) {
     return responseBody.nickname;
 }
 
+/*
 async function loginAndGetNickname(requestBody: LoginRequest) {
     return "작성자";
 }
+
+ */
 
 export { loginAndGetNickname };

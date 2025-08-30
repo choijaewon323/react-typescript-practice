@@ -5,13 +5,12 @@ import NewBoard from "../../Components/NewBoard.tsx";
 import UserSignupButton from "../../Components/UserSignupButton.tsx";
 import LoginButton from "../../Components/LoginButton.tsx";
 import LogoutButton from "../../Components/LogoutButton.tsx";
+import TopElement from "./TopElement.tsx";
 
 export default function Home() {
     return <>
         <div className={"container mx-auto"}>
-            <h1 className={"text-center mt-15 text-3xl"}>
-                TOY PROJECT
-            </h1>
+            <TopElement></TopElement>
 
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
 

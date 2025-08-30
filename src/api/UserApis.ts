@@ -2,7 +2,7 @@ import {NewUserRequest} from "../types/request/NewUserRequest.ts";
 import DOMAIN from "./Domain.tsx";
 
 
-async function RpostNewUser(requestBody: NewUserRequest) {
+async function postNewUser(requestBody: NewUserRequest) {
     const response = await fetch(`${DOMAIN}/api/v1/user`, {
         method: "POST",
         body: JSON.stringify(requestBody),
@@ -16,8 +16,11 @@ async function RpostNewUser(requestBody: NewUserRequest) {
     }
 }
 
+/*
 async function postNewUser(requestBody: NewUserRequest) {
     return;
 }
+
+ */
 
 export { postNewUser };

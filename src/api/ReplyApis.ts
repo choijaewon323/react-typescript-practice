@@ -3,7 +3,7 @@ import DOMAIN from "./Domain.tsx";
 import Reply from "../types/response/Reply.ts";
 
 
-async function RpostNewReply(requestBody: NewReplyRequest) {
+async function postNewReply(requestBody: NewReplyRequest) {
     const response = await fetch(`${DOMAIN}/api/v1/reply`, {
         method: "POST",
         body: JSON.stringify(requestBody),
@@ -17,11 +17,14 @@ async function RpostNewReply(requestBody: NewReplyRequest) {
     }
 }
 
+/*
 async function postNewReply(requestBody: NewReplyRequest) {
     return;
 }
 
-async function RgetReplyList(id: string) {
+ */
+
+async function getReplyList(id: string) {
     const response = await fetch(`${DOMAIN}/api/v1/reply/${id}`);
 
     const responseBody: Reply[] = await response.json();
@@ -29,6 +32,7 @@ async function RgetReplyList(id: string) {
     return responseBody;
 }
 
+/*
 async function getReplyList(id: string): Promise<Reply[]> {
     return [
         {
@@ -47,5 +51,7 @@ async function getReplyList(id: string): Promise<Reply[]> {
         }
     ]
 }
+
+ */
 
 export { postNewReply, getReplyList };

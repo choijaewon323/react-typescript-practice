@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
-import Router from "./routes";
+import Index from "./version2/pages";
 
 createRoot(document.getElementById('root')!).render(
-    <Router></Router>
+    <Index></Index>
 )

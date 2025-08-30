@@ -3,7 +3,7 @@ import Category from "../types/response/Category.ts";
 import NewCategoryRequest from "../types/request/NewCategoryRequest.ts";
 
 
-async function RgetCategoryList() {
+async function getCategoryList() {
     const response = await fetch(`${DOMAIN}/api/v1/category/all`);
 
     const responseBody: Category[] = await response.json();
@@ -11,6 +11,7 @@ async function RgetCategoryList() {
     return responseBody;
 }
 
+/*
 async function getCategoryList(): Category[] {
     return [
         {
@@ -24,7 +25,9 @@ async function getCategoryList(): Category[] {
     ];
 }
 
-async function RpostNewCategory(requestBody: NewCategoryRequest): Promise<void> {
+ */
+
+async function postNewCategory(requestBody: NewCategoryRequest): Promise<void> {
     const response = await fetch(`${DOMAIN}/api/v1/category`, {
         method: "POST",
         body: JSON.stringify(requestBody),
@@ -38,8 +41,11 @@ async function RpostNewCategory(requestBody: NewCategoryRequest): Promise<void> 
     }
 }
 
+/*
 async function postNewCategory(requestBody: NewCategoryRequest): Promise<void> {
     return;
 }
+
+ */
 
 export {getCategoryList, postNewCategory};

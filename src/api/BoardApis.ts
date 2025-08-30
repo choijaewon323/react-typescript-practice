@@ -5,7 +5,7 @@ import {BoardDetail} from "../types/response/BoardDetail.ts";
 import {NewBoardRequest} from "../types/request/NewBoardRequest.ts";
 
 
-async function RgetBoardList(): Promise<BoardListDetail[]> {
+async function getBoardList(): Promise<BoardListDetail[]> {
     const response: Response = await fetch(`${DOMAIN}/api/v1/board`);
 
     const responseBody: BoardListResponse = await response.json();
@@ -13,6 +13,7 @@ async function RgetBoardList(): Promise<BoardListDetail[]> {
     return responseBody.boardList;
 }
 
+/*
 async function getBoardList(): Promise<BoardListDetail[]> {
     return [
         {
@@ -48,7 +49,9 @@ async function getBoardList(): Promise<BoardListDetail[]> {
     ]
 }
 
-async function RgetBoardDetail(id: string): Promise<BoardDetail> {
+ */
+
+async function getBoardDetail(id: string): Promise<BoardDetail> {
     const response = await fetch(`${DOMAIN}/api/v1/board/${id}`);
 
     const responseBody: BoardDetail = await response.json();
@@ -56,6 +59,7 @@ async function RgetBoardDetail(id: string): Promise<BoardDetail> {
     return responseBody;
 }
 
+/*
 async function getBoardDetail(id: string): Promise<BoardDetail> {
     return {
         id: 1,
@@ -70,7 +74,9 @@ async function getBoardDetail(id: string): Promise<BoardDetail> {
     }
 }
 
-async function RpostBoard(requestBody: NewBoardRequest) {
+ */
+
+async function postBoard(requestBody: NewBoardRequest) {
     const response = await fetch(`${DOMAIN}/api/v1/board`, {
         method: "POST",
         body: JSON.stringify(requestBody),
@@ -84,8 +90,11 @@ async function RpostBoard(requestBody: NewBoardRequest) {
     }
 }
 
+/*
 async function postBoard(requestBody: NewBoardRequest) {
     return;
 }
+
+ */
 
 export {getBoardList, getBoardDetail, postBoard};

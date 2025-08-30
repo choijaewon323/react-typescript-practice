@@ -1,12 +1,12 @@
 import {createBrowserRouter, RouterProvider} from "react-router";
-import Home from "./pages/Home.tsx";
-import About from "./pages/About.tsx";
-import NewBoardPage from "./pages/NewBoardPage.tsx";
-import NewUserPage from "./pages/NewUserPage.tsx";
-import LoginPage from "./pages/LoginPage.tsx";
-import {AuthProvider} from "../AuthContext.tsx";
-import BoardDetailPage from "./pages/BoardDetailPage.tsx";
-import MapPage from "./pages/MapPage.tsx";
+import Home from "./Home.tsx";
+import About from "./About.tsx";
+import NewBoardPage from "./NewBoardPage.tsx";
+import NewUserPage from "./NewUserPage.tsx";
+import LoginPage from "./LoginPage.tsx";
+import {AuthProvider} from "../../AuthContext.tsx";
+import BoardDetailPage from "./BoardDetailPage.tsx";
+import MapPage from "./MapPage.tsx";
 import 'leaflet/dist/leaflet.css'
 
 
