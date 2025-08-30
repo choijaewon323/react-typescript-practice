@@ -19,12 +19,25 @@ export default function BoardList() {
         <div>
             {boardList.map((board: BoardListDetail) => {
                 return <div
-                    className="flex text-center  h-20"
+                    className="mb-10"
                     key={board.id}>
-                    <div className={"flex-10"}><Link to={`/board/detail/${board.id}`}>{board.title}</Link></div>
-                    <div className={"flex-1"}>{board.writer}</div>
-                    <div className={"flex-1"}>{board.likeCount}</div>
-                    <div className={"flex-2"}>{board.createdAt}</div>
+                    <div
+                    className="text-xl font-bold"
+                    ><Link to={`/board/detail/${board.id}`}>{board.title}</Link></div>
+                    <div className="flex gap-3 py-1 text-gray-400">
+                        <div>
+                            {board.category}
+                        </div>
+                        <div>{board.createdAt}</div>
+                    </div>
+                    <div className="text-gray-500 py-2">
+                        {board.content}
+                    </div>
+                    <button
+                        className="bg-blue-500 text-white font-bold p-1"
+                    >
+                        <Link to={`/board/detail/${board.id}`}>... Read More</Link>
+                    </button>
                 </div>
             })}
         </div>

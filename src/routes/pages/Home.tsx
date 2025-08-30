@@ -9,9 +9,29 @@ import LogoutButton from "../../Components/LogoutButton.tsx";
 export default function Home() {
     return <>
         <div className={"container mx-auto"}>
-            <h1 className={"text-center text-7xl"}>
+            <h1 className={"text-center mt-15 text-3xl"}>
                 TOY PROJECT
             </h1>
+
+            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
+            <h3 className="text-center mt-20 mb-15 text-2xl">
+                전체 글
+            </h3>
+
+            <div className="flex flex-col items-center">
+                <BoardList></BoardList>
+            </div>
+            <div className="flex-1">
+                <CategoryList></CategoryList>
+            </div>
+            <div>
+                <NewBoard></NewBoard>
+
+                <NewCategory></NewCategory>
+            </div>
+
+
             <div className="
             flex flex-row-reverse mt-12
         ">
@@ -29,17 +49,6 @@ export default function Home() {
                 text-center mr-12
             ">
                     <LogoutButton></LogoutButton>
-                </div>
-            </div>
-
-            <div className="flex mt-12">
-                <div className="flex-2">
-                    <NewBoard></NewBoard>
-                    <BoardList></BoardList>
-                </div>
-                <div className="flex-1">
-                    <NewCategory></NewCategory>
-                    <CategoryList></CategoryList>
                 </div>
             </div>
         </div>

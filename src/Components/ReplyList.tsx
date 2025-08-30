@@ -19,19 +19,26 @@ export default function ReplyList() {
 
     return <>
         <div>
-            <h3>댓글 리스트</h3>
+            <h3 className="text-1sm">댓글 <span className={"text-green-600"}>{replyList.length}</span></h3>
+            <hr className="border-gray-200 my-5" />
             <ul>
                 {replyList?.map((reply: Reply) => {
                     return <>
-                        <li key={reply.id}>
-                            <p>{reply.content}</p>
-                            <p>{reply.writer}</p>
-                            <p>게시일 : {reply.createdAt} 수정일 : {reply.updatedAt}</p>
-                        </li>
+                        <div className="flex">
+                            <li className="mb-5 flex-10" key={reply.id}>
+                                <p className="text-lg font-bold">{reply.writer}</p>
+                                <p>{reply.content}</p>
+                                <p className="mt-5 text-sm text-gray-500">{reply.updatedAt}</p>
+                            </li>
+                            <button className="border rounded-2xl h-6 w-6 border-white hover:bg-gray-200">
+                                ⋮
+                            </button>
+                        </div>
+                        <hr className="border-gray-100 mt-5 mb-3" />
                     </>
                 })}
             </ul>
+            <NewReply reload={replyListReload}></NewReply>
         </div>
-        <NewReply reload={replyListReload}></NewReply>
     </>
 }

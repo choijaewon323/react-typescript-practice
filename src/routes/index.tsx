@@ -6,11 +6,18 @@ import NewUserPage from "./pages/NewUserPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import {AuthProvider} from "../AuthContext.tsx";
 import BoardDetailPage from "./pages/BoardDetailPage.tsx";
+import MapPage from "./pages/MapPage.tsx";
+import 'leaflet/dist/leaflet.css'
+
 
 const router = createBrowserRouter(([
     {
         path: '/',
         element: <Home></Home>
+    },
+    {
+        path: '/map',
+        element: <MapPage />
     },
     {
         path: '/about',

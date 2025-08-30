@@ -24,9 +24,23 @@ export default function NewReply({reload}: {reload: () => Promise<void>}) {
     }
 
     return <>
-        <div>
-            <input placeholder={"댓글 내용을 입력하세요"} onChange={e => setContent(e.target.value)} value={content}/>
-            <button onClick={newReply}>댓글 추가</button>
+        <div className="flex-col items-end">
+            <div>
+                <textarea
+                    className="p-3 w-full h-30 border border-gray-300"
+                    placeholder="내용을 입력하세요."
+                    onChange={e => setContent(e.target.value)}
+                    value={content}>
+
+                </textarea>
+            </div>
+            <div>
+                <button
+                    className="bg-green-400 text-white h-10 w-30"
+                    onClick={newReply}>
+                    등록
+                </button>
+            </div>
         </div>
     </>
 }

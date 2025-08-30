@@ -1,6 +1,7 @@
 interface BoardListDetail {
     id: number;
     category: string;
+    content: string;
     title: string;
     writer: string;
     likeCount: number;

@@ -47,10 +47,11 @@ export default function NewUserPage() {
                         placeholder={"닉네임을 입력하세요"} onChange={e => setNickname(e.target.value)}/>
                 </p>
             </div>
-            <div>
+            <div className={"flex justify-between"}>
                 <button
                     className={"bg-sky-500 hover:bg-sky-700 p-2 rounded-md text-white mt-5"}
-                    onClick={signup}>회원가입</button>
+                    onClick={signup}>회원가입
+                </button>
             </div>
         </div>
     </>

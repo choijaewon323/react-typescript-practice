@@ -8,25 +8,54 @@ import {BoardDetail} from "../../types/response/BoardDetail.ts";
 export default function BoardDetailPage() {
     const [board, setBoard] = useState<BoardDetail>();
     const {id} = useParams<{id: string}>();
+    const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [likeCount, setLikeCount] = useState<number>(0);
+
+    const toggleLike = () => {
+        if (isLiked) {
+            setIsLiked(false);
+            setLikeCount(likeCount - 1);
+        } else {
+            setIsLiked(true);
+            setLikeCount(likeCount + 1);
+        }
+    }
 
     useEffect(() => {
         getBoardDetail(id!)
             .then((result: BoardDetail) => {
                 setBoard(result);
+                setLikeCount(result.likeCount)
             })
     }, []);
 
     return <>
-        <div>
-            <p>카테고리 : {board?.category}</p>
-            <p>{board?.title}</p>
+        <div className="container mx-auto mt-20">
+            <h2 className="text-2xl font-bold">{board?.title}</h2>
+            <div
+                className="flex gap-2 text-gray-600 py-2">
+
+                <div>{board?.category}</div>
+                <div>{board?.updatedAt}</div>
+            </div>
             <p>{board?.content}</p>
-            <p>{board?.writer}</p>
-            <p>조회수 : {board?.cnt} 좋아요 수 : {board?.likeCount}</p>
-            <p>게시 날짜 : {board?.createdAt} 최근 수정일 : {board?.updatedAt}</p>
-        </div>
-        <div>
-            <ReplyList></ReplyList>
+
+            <button
+                onClick={toggleLike}
+                className="flex items-center gap-2 px-4 py-2"
+            >
+                {/* 하트 아이콘 */}
+                <span>
+                    {isLiked ? "❤️" : "🤍"}
+                </span>
+                <span>
+                    {likeCount}
+                </span>
+            </button>
+            <div className="mt-10">
+                <hr />
+                <ReplyList></ReplyList>
+            </div>
         </div>
     </>
 }
