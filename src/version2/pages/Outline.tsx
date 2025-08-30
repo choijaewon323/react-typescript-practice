@@ -25,7 +25,7 @@ export default function Outline() {
 
         <Outlet></Outlet>
 
-        <div className={"flex flex-col bg-black px-40 pt-5 pb-10"}>
+        <div className={"flex flex-col mx-auto bg-black px-40 pt-5 pb-10"}>
             <p className={"text-gray-500"}>© 2025 Proudly created with Jaewon</p>
         </div>
     </>

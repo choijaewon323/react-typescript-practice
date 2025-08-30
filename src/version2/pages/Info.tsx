@@ -12,7 +12,7 @@ export default function Info() {
                 </h2>
             </div>
 
-            <div className={"flex flex-row gap-10 px-40 py-30"}>
+            <div className={"flex flex-row gap-10 mx-auto px-40 py-30 max-w-400"}>
                 <div className={"flex-2"}>
                     <h2 className={"text-xl"}>
                         뉴스는 신뢰입니다!

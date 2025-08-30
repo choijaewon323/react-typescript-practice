@@ -13,7 +13,7 @@ export default function BlogList() {
     }, []);
 
     return <>
-        <div className={"flex flex-row flex-wrap justify-center gap-5 px-40 py-20"}>
+        <div className={"flex flex-row flex-wrap mx-auto justify-center max-w-400 gap-5 px-40 py-20"}>
             {blogList.map(item => {
                 return <>
                     <div className={"flex flex-col px-5 py-7 min-w-70 max-w-70 h-80 border border-gray-300"}>
